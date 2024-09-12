@@ -1,8 +1,12 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import statistics as ss
 
 vehicles  = pd.read_csv("vehicles_us.csv")
+
+vehicles['cylinders'] = vehicles['cylinders'].fillna(ss.median(vehicles['cylinders']))
+
 
 auto_only = vehicles[vehicles["transmission"] == "automatic"]
 
